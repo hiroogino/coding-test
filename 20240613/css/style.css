@@ -1,0 +1,29 @@
+/* unique page style */
+
+html {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #383838;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #eee;
+    margin: 0;
+    padding: 0;
+}
+
+.l-root {
+    max-width: 750px;
+    width: 100%;
+    background-color: #fff;
+    margin-inline: auto;
+    height: 100vh;
+}
+
+
+.c-heading-lv1 {
+    font-size: 16px;
+    font-weight: 700;
+    list-style: 1.35em;
+}
