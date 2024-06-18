@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout with Tailwind CSS</title>
+    <link href="dist/styles.css" rel="stylesheet">
+    
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navigation for larger screens -->
+    <div class="hidden md:flex h-screen">
+        <nav class="w-1/4 bg-gray-800 text-white p-4">
+            <h2 class="text-xl font-bold mb-4">Side Navigation</h2>
+            <ul>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">Home</a></li>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">About</a></li>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">Services</a></li>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">Contact</a></li>
+            </ul>
+        </nav>
+        <main class="w-3/4 p-6">
+            <h1 class="text-3xl font-bold mb-4">Welcome to the Responsive Layout</h1>
+            <p>This is a simple example of a responsive layout using Tailwind CSS. Resize the browser window to see the layout change.</p>
+        </main>
+    </div>
+
+    <!-- Navigation for smaller screens -->
+    <div class="md:hidden">
+        <header class="bg-gray-800 text-white p-4 flex justify-between items-center">
+            <h2 class="text-xl font-bold">Responsive Layout</h2>
+            <button id="menuButton" class="text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </header>
+        <nav id="mobileMenu" class="hidden bg-gray-800 text-white p-4">
+            <ul>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">Home</a></li>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">About</a></li>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">Services</a></li>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="md:hidden p-6">
+        <h1 class="text-3xl font-bold mb-4">Welcome to the Responsive Layout</h1>
+        <p>This is a simple example of a responsive layout using Tailwind CSS. Resize the browser window to see the layout change.</p>
+    </main>
+
+    <script>
+        document.getElementById('menuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
