@@ -4,8 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Layout with Tailwind CSS</title>
-    <link href="dist/styles.css" rel="stylesheet">
+    <link href="./dist/styles.css" rel="stylesheet">
     
+    <style>
+        /* カスタムスタイル */
+        @keyframes slide-in {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slide-out {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .slide-in {
+            animation: slide-in 0.3s forwards;
+        }
+
+        .slide-out {
+            animation: slide-out 0.3s forwards;
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
 
@@ -29,14 +57,14 @@
     <!-- Navigation for smaller screens -->
     <div class="md:hidden">
         <header class="bg-gray-800 text-white p-4 flex justify-between items-center">
-            <h2 class="text-xl font-bold">Responsive Layout</h2>
             <button id="menuButton" class="text-white focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
+            <h2 class="text-xl font-bold">Responsive Layout</h2>
         </header>
-        <nav id="mobileMenu" class="hidden bg-gray-800 text-white p-4">
+        <nav id="mobileMenu" class="fixed inset-y-0 left-0 w-64 bg-gray-800 text-white p-4 transform -translate-x-full transition-transform">
             <ul>
                 <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">Home</a></li>
                 <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">About</a></li>
@@ -52,9 +80,21 @@
     </main>
 
     <script>
-        document.getElementById('menuButton').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuButton.addEventListener('click', function() {
+            if (mobileMenu.classList.contains('-translate-x-full')) {
+                mobileMenu.classList.remove('-translate-x-full');
+                mobileMenu.classList.add('slide-in');
+                mobileMenu.classList.remove('slide-out');
+            } else {
+                mobileMenu.classList.add('slide-out');
+                mobileMenu.classList.remove('slide-in');
+                setTimeout(() => {
+                    mobileMenu.classList.add('-translate-x-full');
+                }, 300);
+            }
         });
     </script>
 </body>
